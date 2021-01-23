@@ -47,9 +47,9 @@ application.
 
 ### Setup
 
- 1. Clone this repository via ```git clone git@github.com:swk5-2020ws/bb-apollo-g2-eder-g1-hermanseder.git```
+ 1. Clone this repository via ```git clone ```
 
- 2. Switch to ```\bb-apollo-g2-eder-g1-hermanseder\docker``` folder
+ 2. Switch to ```\apollo\docker``` folder
 
  3. Be sure to have the latest version of `docker-compose -version` >= version **1.27.4** and `docker -v`  >= **19.03.13**
 
@@ -71,7 +71,7 @@ After you executed step 4. of the [Setup](#setup) section you should see the fol
 |  apollo.api                	|   8080	|   Apollo Rest API         |  
 
 
-5. After you have verified that the containers are up and running you must copy the provided `apollo_dev_backup.sql.gz` dump file into ```\bb-apollo-g2-eder-g1-hermanseder\docker```
+5. After you have verified that the containers are up and running you must copy the provided `apollo_dev_backup.sql.gz` dump file into ```\apollo\docker```
 7. Run the `db_restore.sh` script which is located there to seed the development database
 
 ### Backup Databases
