@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <Configurations>Debug;Release;Github</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="RestSharp" Version="106.11.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Apollo.Domain\Apollo.Domain.csproj" />
+    <ProjectReference Include="..\Apollo.Persistence\Apollo.Persistence.csproj" />
+    <ProjectReference Include="..\Apollo.UnitOfWork\Apollo.UnitOfWork.csproj" />
+    <ProjectReference Include="..\Apollo.Util\Apollo.Util.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.import.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

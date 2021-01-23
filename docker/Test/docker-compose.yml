@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+
+  apollo_test_db:
+    build: ../Database/
+    image: apollo-db:latest
+    container_name: apollo.test.db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${TEST_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${TEST_DATABASE}
+      MYSQL_USER: ${TEST_USER}
+      MYSQL_PASSWORD: ${TEST_PASSWORD}
+    volumes:
+      - ${PWD}/mariadb/test:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    networks:
+      - apollo_net
+
+  apollo_authentication_dev:
+    build: ../Authentication/dev
+    image: apollo-authentication-dev:latest
+    container_name: apollo.authentication.dev
+    restart: always
+    environment:
+      KEYCLOAK_USER: ${KEYCLOAK_USER_DEV}
+      KEYCLOAK_PASSWORD: ${KEYCLOAK_PASSWORD_DEV}
+      MYSQL_USER: ${TEST_USER}
+      KEYCLOAK_IMPORT: ${KEYCLOAK_IMPORT_DEV}
+    ports:
+      - "9001:8080"
+    networks:
+      - apollo_net
+
+networks:
+  apollo_net:
+    driver: "bridge"

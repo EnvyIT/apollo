@@ -1,0 +1,117 @@
+﻿<UserControl x:Class="Apollo.Terminal.Views.Wizard.PaymentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Apollo.Terminal.Views.Wizard"
+             xmlns:wizard="clr-namespace:Apollo.Terminal.ViewModels.Wizard"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converters="clr-namespace:Apollo.Terminal.Converters"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance wizard:PaymentViewModel}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converters:CurrencyToStringConverter x:Key="CurrencyToStringConverter" />
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height=".25*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height=".25*" />
+            <RowDefinition Height="1" />
+            <RowDefinition Height=".25*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width=".25*" />
+            <ColumnDefinition Width=".75*" />
+            <ColumnDefinition Width=".25*" />
+            <ColumnDefinition Width=".75*" />
+            <ColumnDefinition Width=".25*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBox Grid.Row="1"
+                 Grid.Column="2"
+                 Text="{Binding CreditCardNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 materialDesign:HintAssist.Hint="{lex:Loc CreditCardNumber}"
+                 FontSize="16"
+                 Foreground="{DynamicResource MaterialDesignDarkForeground}" />
+        <TextBox Grid.Row="1"
+                 Grid.Column="4"
+                 Text="{Binding CreditCardCvc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 materialDesign:HintAssist.Hint="{lex:Loc CreditCardCvc}"
+                 FontSize="16"
+                 Foreground="{DynamicResource MaterialDesignDarkForeground}" />
+
+        <TextBox Grid.Row="3"
+                 Grid.Column="2"
+                 Text="{Binding CreditCardName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 materialDesign:HintAssist.Hint="{lex:Loc CreditCardName}"
+                 FontSize="16"
+                 Foreground="{DynamicResource MaterialDesignDarkForeground}" />
+        <DatePicker Grid.Row="3"
+                    Grid.Column="4"
+                    SelectedDate="{Binding CreditCardExpirationDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    FontSize="16"
+                    materialDesign:HintAssist.Hint="{lex:Loc CreditCardValidUntil}"
+                    materialDesign:CalendarAssist.IsHeaderVisible="False"
+                    Foreground="{DynamicResource MaterialDesignDarkForeground}" />
+
+        <Border Grid.Row="5"
+                Grid.Column="1"
+                Grid.ColumnSpan="5"
+                Background="{DynamicResource MaterialDesignLightBackground}" />
+
+        <Grid Grid.Row="7"
+              Grid.Column="2"
+              Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width=".25*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="1"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Orientation="Horizontal">
+                <TextBlock Text="{Binding CountSeats}"
+                           FontSize="20"
+                           FontWeight="DemiBold"
+                           Foreground="{DynamicResource MaterialDesignLightBackground}" />
+                <TextBlock Text="x"
+                           Margin="5 0 "
+                           FontSize="20"
+                           FontWeight="DemiBold"
+                           Foreground="{DynamicResource MaterialDesignLightBackground}" />
+                <TextBlock Text="{Binding MovieTitle}"
+                           FontSize="20"
+                           FontWeight="DemiBold"
+                           Foreground="{DynamicResource MaterialDesignLightBackground}" />
+            </StackPanel>
+            <StackPanel Grid.Column="3"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal">
+                <TextBlock Text="{Binding TotalPrice, Converter={StaticResource CurrencyToStringConverter}}"
+                           FontSize="20"
+                           FontWeight="DemiBold"
+                           Foreground="{DynamicResource MaterialDesignLightBackground}" />
+                <TextBlock Text="€"
+                           FontSize="20"
+                           Margin="5 0 0 0"
+                           FontWeight="DemiBold"
+                           Foreground="{DynamicResource MaterialDesignLightBackground}" />
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,49 @@
+title Infrastructure Management
+
+
+participant Client
+participant Apollo API
+participant Apollo Persistence
+
+participant Apollo Keycloak
+
+Client->>Apollo API: GET /api/v1/cinemahall/1
+
+Apollo API->>Apollo Persistence: Fetch cinema hall by id
+Apollo API<<--Apollo Persistence: new CinemaHall()
+
+Client<<--Apollo API: HTTP/1.1 OK - CinemaHallDto
+
+
+Client->>Apollo API: DELETE /api/v1/cinemahall
+
+Client<<--Apollo API: HTTP/1.1 UNAUTHORIZED
+
+
+Client->>Apollo Keycloak: POST /auth/realms/apollo-web/protocol/openid-connect/token
+
+Client<<--Apollo Keycloak: Claims
+
+
+Client->>Apollo API: POST /api/v1/cinemahall
+
+Apollo API->>Apollo Persistence: Add new cinema hall
+Apollo API<<--Apollo Persistence: new CinemaHall()
+
+Client<<--Apollo API: HTTP/1.1 CREATED - /api/v1/cinemahall/{id}
+
+
+Client->>Apollo API: PUT /api/v1/cinemahall
+
+Apollo API->>Apollo Persistence: Update cinema hall
+Apollo API<<--Apollo Persistence: Updated successfully
+
+Client<<--Apollo API: HTTP/1.1 NO_CONTENT
+
+
+Client->>Apollo API: DELETE /api/v1/cinemahall/1
+
+Apollo API->>Apollo Persistence: Delete cinema hall
+Apollo API<<--Apollo Persistence: Deleted successfully
+
+Client<<--Apollo API: HTTP/1.1 NO_CONTENT

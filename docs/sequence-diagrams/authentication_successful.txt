@@ -1,0 +1,16 @@
+participant Client
+participant Apollo API
+participant Apollo Keycloak
+
+Client->>Apollo Keycloak: POST /auth/realms/apollo-web/protocol/openid-connect/token
+note over Client, Apollo Keycloak: Username and password
+Client<<--Apollo Keycloak: HTTP/200 OK - Token
+
+Client->>Apollo API: POST/DELETE/PUT /v1/*
+note over Client, Apollo API: Data and Token
+
+Apollo API->>Apollo Keycloak: POST /auth/realms/apollo-web/protocol/openid-connect/userinfo
+note over Apollo API, Apollo Keycloak: Token
+
+Apollo API<<--Apollo Keycloak: HTTP/200 OK - Claims
+Client<<--Apollo API: HTTP/200 OK - Requested Data

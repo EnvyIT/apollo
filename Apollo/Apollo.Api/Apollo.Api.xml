@@ -1,0 +1,479 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Apollo.Api</name>
+    </assembly>
+    <members>
+        <member name="M:Apollo.Api.Controllers.InfrastructureController.GetCinemaHalls">
+            <summary>
+            Get all active cinema halls.
+            </summary>
+            <returns>List with cinema halls.</returns>
+            <response code="200">Returns all active cinema halls.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.InfrastructureController.GetCinemaHall(System.Int64)">
+            <summary>
+            Get single cinema hall by id.
+            </summary>
+            <param name="id">Id of the cinema hall.</param>
+            <returns>Cinema hall details.</returns>
+            <response code="200">Cinema hall details if the given id exist.</response>
+            <response code="400">If the given id not exist.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.InfrastructureController.DeleteCinemaHall(System.Int64)">
+            <summary>
+            Delete cinema hall with the given id.
+            </summary>
+            <param name="id">Id of the cinema hall.</param>
+            <returns>Status code.</returns>
+            <response code="200">If the cinema hall was deleted.</response>
+            <response code="400">If the cinema hall is not deletable.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.InfrastructureController.UpdateCinemaHall(Apollo.Core.Dto.CinemaHallDto)">
+            <summary>
+            Update cinema hall with the given data.
+            </summary>
+            <param name="cinemaHall">Updated cinema hall.</param>
+            <returns>Status code.</returns>
+            <response code="200">If the cinema hall was updated.</response>
+            <response code="400">If the cinema hall is not updateable.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.InfrastructureController.AddCinemaHall(Apollo.Core.Dto.CinemaHallDto)">
+            <summary>
+            Add cinema hall with the given data.
+            </summary>
+            <param name="cinemaHall">New cinema hall.</param>
+            <returns>Created id.</returns>
+            <response code="200">If the cinema hall was added.</response>
+            <response code="400">If the cinema hall is not addable.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.InfrastructureController.GetSeatLayout(System.Int64)">
+            <summary>
+            Get the seat layout from a given cinema hall.
+            </summary>
+            <param name="id">Cinema hall id.</param>
+            <returns>Seat layout of the cinema hall.</returns>
+            <response code="200">Seat layout if the given cinema hall id exist.</response>
+            <response code="400">If the given cinema hall id not exist.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.InfrastructureController.LockSeat(System.Int64)">
+            <summary>
+            Lock a given seat.
+            </summary>
+            <param name="id">Id of the seat.</param>
+            <returns>Status code.</returns>
+            <response code="200">If the seat was locked.</response>
+            <response code="400">If the seat is not lockable.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.InfrastructureController.UnlockSeat(System.Int64)">
+            <summary>
+            Unlock a given seat.
+            </summary>
+            <param name="id">Id of the seat.</param>
+            <returns>Status code.</returns>
+            <response code="200">If the seat was unlocked.</response>
+            <response code="400">If the seat is not unlock able.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.InfrastructureController.GetRowsFromCinemaHall(System.Int64)">
+            <summary>
+            Get rows from a given cinema hall id.
+            </summary>
+            <param name="id">Cinema hall id.</param>
+            <returns>Rows from cinema hall.</returns>
+            <response code="200">If the cinema hall id is valid.</response>
+            <response code="400">If the cinema hall id is invalid.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.InfrastructureController.AddRowAsync(Apollo.Core.Dto.RowDto)">
+            <summary>
+            Adds a given row.
+            </summary>
+            <param name="row">New row.</param>
+            <returns>Created id.</returns>
+            <response code="200">If the row was added.</response>
+            <response code="400">If the row was not added.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.InfrastructureController.DeleteRow(System.Int64)">
+            <summary>
+            Deletes row with the given id.
+            </summary>
+            <param name="id">Id of the row.</param>
+            <returns>Status code.</returns>
+            <response code="200">If the row was deleted.</response>
+            <response code="400">If the row was not deletable.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.InfrastructureController.UpdateRow(Apollo.Core.Dto.RowDto)">
+            <summary>
+            Updates row with the given data.
+            </summary>
+            <param name="row">Updated row.</param>
+            <returns>Status code.</returns>
+            <response code="200">If the row category was updated.</response>
+            <response code="400">If the row category was not updateable.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.InfrastructureController.GetRowAsync(System.Int64)">
+            <summary>
+            Gets row details from a given row id.
+            </summary>
+            <param name="id">Row id.</param>
+            <returns>Row details.</returns>
+            <response code="200">If the row id was valid.</response>
+            <response code="400">If the row id was invalid.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.InfrastructureController.GetRowCategoriesFromCinemaHall(System.Int64)">
+            <summary>
+            Gets row categories from a given cinema hall id.
+            </summary>
+            <param name="cinemaHallId">Cinema hall id.</param>
+            <returns>Row categories from cinema hall.</returns>
+            <response code="200">If the cinema hall id was valid.</response>
+            <response code="400">If the cinema hall id was invalid.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.InfrastructureController.GetRowCategories">
+            <summary>
+            Gets row categories.
+            </summary>
+            <returns>Row categories.</returns>
+            <response code="200">Row categories.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.InfrastructureController.GetRowCategoryAsync(System.Int64)">
+            <summary>
+            Gets a given row category.
+            </summary>
+            <param name="id">New row category.</param>
+            <returns>Row category.</returns>
+            <response code="200">If the row category id was valid.</response>
+            <response code="400">If the row category id was invalid.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.InfrastructureController.AddRowCategoryAsync(Apollo.Core.Dto.RowCategoryDto)">
+            <summary>
+            Adds a given row category.
+            </summary>
+            <param name="rowCategory">New row category.</param>
+            <returns>Created id.</returns>
+            <response code="200">If the row category was added.</response>
+            <response code="400">If the row category was not added.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.InfrastructureController.DeleteRowCategory(System.Int64)">
+            <summary>
+            Deletes row category with the given id.
+            </summary>
+            <param name="id">Id of the row category.</param>
+            <returns>Status code.</returns>
+            <response code="200">If the row category was deleted.</response>
+            <response code="400">If the row category was not deletable.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.InfrastructureController.UpdateRowCategory(Apollo.Core.Dto.RowCategoryDto)">
+            <summary>
+            Updates row category with the given data.
+            </summary>
+            <param name="rowCategory">Updated row category.</param>
+            <returns>Status code.</returns>
+            <response code="200">If the row category was updated.</response>
+            <response code="400">If the row category was not updateable.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.InfrastructureController.UpdateSeatLayout(System.Int64,System.Collections.Generic.IList{Apollo.Core.Dto.SeatDto})">
+            <summary>
+            Updates a cinema hall with the given seat layout.
+            </summary>
+            <param name="id">Cinema hall id.</param>
+            <param name="seatLayout">New seat layout.</param>
+            <returns>Status code.</returns>
+            <response code="200">If the update was successful.</response>
+            <response code="400">If the update was not possible.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.MovieController.GetGenre">
+             <summary>
+             Get all genres.
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 GET /v1/movie/genres
+            
+             </remarks>
+             <returns>Return all active movie genres.</returns>
+             <response code="200">Return all active movie genres.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.MovieController.UpdateGenre(Apollo.Core.Dto.GenreDto)">
+             <summary>
+             Updates a genre.
+             </summary>
+             <remarks>
+             Sample request:
+            C
+                 PUT /v1/movie/genre
+            
+             </remarks>
+             <param name="genre">A genre.</param>
+             <returns>Returns the updated genre.</returns>
+             <response code="200">Returns the updated genre id.</response>
+             <response code="400">Return Bad Request if the genre could not be updated.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.MovieController.CreateGenre(Apollo.Core.Dto.GenreDto)">
+             <summary>
+             Creates a new genre.
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST /v1/movie/genre
+            
+             </remarks>
+             <param name="genre">A genre.</param>
+             <returns>Returns the created genre.</returns>
+             <response code="200">Returns the created genre id.</response>
+             <response code="500">If a genre with the given id already exists.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.MovieController.DeleteGenre(System.Int64)">
+             <summary>
+             Deletes a genre by id.
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 DELETE /v1/movie/genre/1
+            
+             </remarks>
+             <param name="id">A genre id.</param>
+             <response code="200">Returns OK if the genre could be deleted.</response>
+             <response code="400">Returns Bad Request if the genre could not be deleted.</response>
+             <response code="500">If the provided id does not exist.</response>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Apollo.Api.Controllers.MovieController.GetMovies(System.Int32,System.Int32,System.String,System.Collections.Generic.IEnumerable{System.Int64})" -->
+        <member name="M:Apollo.Api.Controllers.MovieController.UpdateMovie(Apollo.Core.Dto.MovieDto)">
+             <summary>
+             Updates a movie.
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 PUT /v1/movie
+            
+             </remarks>
+             <returns>Returns the updated movie.</returns>
+             <param name="movie">A movie.</param>
+             <response code="200">Returns the updated movie id.</response>
+             <response code="400">Return Bad Request if the movie could not be updated.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.MovieController.CreateMovie(Apollo.Core.Dto.MovieDto)">
+             <summary>
+             Creates a movie.
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST /v1/movie
+            
+             </remarks>
+             <returns> Returns the created movie.</returns>
+             <param name="movie">A movie.</param>
+             <response code="200">Returns the created movie id.</response>
+             <response code="500">If a movie with the given id already exists.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.MovieController.DeleteMovie(System.Int64)">
+             <summary>
+             Deletes a movie.
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 DELETE /v1/movie/1
+            
+             </remarks>
+             <param name="id">A movie id.</param>
+             <response code="200">Returns OK if the movie could be deleted.</response>
+             <response code="400">Returns Bad Request if the movie could not be deleted.</response>
+             <response code="500">If the provided id does not exist.</response>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Apollo.Api.Controllers.MovieController.GetActors(System.Int32,System.Int32)" -->
+        <member name="M:Apollo.Api.Controllers.MovieController.UpdateActor(Apollo.Core.Dto.ActorDto)">
+             <summary>
+             Updates an actor.
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 PUT /v1/movie/actor
+            
+             </remarks>
+             <returns>Returns the actor movie.</returns>
+             <param name="actor">An actor.</param>
+             <response code="200">Returns the updated actor id.</response>
+              /// <response code="400">Return Bad Request if the actor could not be updated.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.MovieController.CreateActor(Apollo.Core.Dto.ActorDto)">
+             <summary>
+             Creates an actor.
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST /v1/movie/actor
+            
+             </remarks>
+             <returns> Returns the created actor.</returns>
+             <param name="actor">An actor.</param>
+             <response code="200">Returns the created actor id.</response>
+             <response code="500">If an actor with the given id already exists.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.MovieController.DeleteActor(System.Int64)">
+             <summary>
+             Deletes an actor.
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 DELETE /v1/movie/actor/1
+            
+             </remarks>
+             <param name="id">An actor id.</param>
+             <response code="200">Returns OK if the actor could be deleted.</response>
+             <response code="400">Returns Bad Request if the actor could not be deleted.</response>
+             <response code="500">If the provided id does not exist.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.MovieController.AddActorToMovie(System.Int64,System.Int64)">
+             <summary>
+             Adds an actor to a movie.
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST /v1/movie/1/2
+            
+             </remarks>
+             <response code="200">Returns OK if the actor is added to the movie.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.MovieController.GetActorsFromMovie(System.Int64)">
+             <summary>
+             Get all actors from a movie.
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 GET /v1/movie/1/actors
+            
+             </remarks>
+             <response code="200">Returns OK if the actor is added to the movie.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.MovieController.AddActorsToMovie(System.Int64,System.Collections.Generic.IEnumerable{System.Int64})">
+             <summary>
+             Adds an actor to a movie.
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST /v1/movie/1/actors
+            
+             </remarks>
+             <param name="actor">An actor.</param>
+             <response code="200">Returns OK if the actor is added to the movie.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.MovieController.GetImageByMovieId(System.Int64)">
+             <summary>
+             Gets the image for a movie.
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 GET /v1/movie/image/12349
+            
+             </remarks>
+              /// <param name="id">The movie id.</param>
+             <returns>Returns the image in form of a byte array.</returns>
+             <response code="200">Returns the image in form of a byte array.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.ScheduleController.GetSchedules(System.DateTime)">
+            <summary>
+            Get all schedules from a given day which are not already started.
+            </summary>
+            <param name="day">Selected day (Only year, month and day are used).</param>
+            <returns>List with schedules.</returns>
+            <response code="200">List with schedules.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.ScheduleController.GetSchedulesByGenre(System.DateTime,System.String)">
+            <summary>
+            Get all schedules from a given day which are not already started and match the given genre.
+            </summary>
+            <param name="day">Selected day (Only year, month and day are used).</param>
+            <param name="genre">Selected genre.</param>
+            <returns>List with schedules.</returns>
+            <response code="200">List with schedules.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.ScheduleController.GetSchedulesByTitle(System.DateTime,System.String)">
+            <summary>
+            Get all schedules from a given day which are not already started and match the given title.
+            </summary>
+            <param name="day">Selected day (Only year, month and day are used).</param>
+            <param name="title">Selected title.</param>
+            <returns>List with schedules.</returns>
+            <response code="200">List with schedules.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.ScheduleController.GetSchedule(System.Int64)">
+            <summary>
+            Get a schedule from a given id.
+            </summary>
+            <param name="id">Selected day (Only year, month and day are used).</param>
+            <returns>List with schedules.</returns>
+            <response code="200">Schedule with the id.</response>
+            <response code="400">Schedule not exist.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.ScheduleController.AddSchedule(Apollo.Core.Dto.ScheduleDto)">
+            <summary>
+            Add a new schedule.
+            </summary>
+            <param name="schedule">New schedule data.</param>
+            <returns>The new ID if the given schedule is valid.</returns>
+            <response code="200">The created ID for this schedule.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.ScheduleController.DeleteSchedule(System.Int64)">
+            <summary>
+            Deletes the schedule with the given id.
+            </summary>
+            <param name="id">ID from the schedule.</param>
+            <returns>Successful state.</returns>
+            <response code="200">If the schedule was successfully deleted.</response>
+            <response code="400">If the schedule is not deletable.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.ScheduleController.UpdateSchedule(Apollo.Core.Dto.ScheduleDto)">
+            <summary>
+            Updates the given schedule.
+            </summary>
+            <param name="schedule">Updated schedule data.</param>
+            <returns>Successful if the update was successful.</returns>
+            <response code="200">If the schedule was successfully updated.</response>
+            <response code="400">If the schedule is not updateable.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.ScheduleController.GetLoadFactor(System.Int64)">
+            <summary>
+            Get the load factor for a given schedule id.
+            </summary>
+            <param name="id">Schedule id.</param>
+            <returns>Load factor if the schedule exist.</returns>
+            <response code="200">Load factor as percentage.</response>
+            <response code="400">Invalid id given.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.ScheduleController.GetSeatLayout(System.Int64)">
+            <summary>
+            Gets the seat layout for a given schedule id.
+            </summary>
+            <param name="id">Schedule id.</param>
+            <returns>Seat layout.</returns>
+            <response code="200">If the given schedule id was valid.</response>
+            <response code="400">If the given schedule id was invalid.</response>
+        </member>
+        <member name="M:Apollo.Api.Controllers.UserController.GetRole">
+             <summary>
+             Gets the specific role from a given JWT token.
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 GET /v1/user/role
+            
+             </remarks>
+             <returns>Return the role for the given JWT-token.</returns>
+             <response code="200">Returns the role for the given JWT-token.</response>
+             <response code="400">If role JWT is not valid.</response>
+        </member>
+    </members>
+</doc>

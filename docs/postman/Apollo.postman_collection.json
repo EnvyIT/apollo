@@ -1,0 +1,99 @@
+{
+	"info": {
+		"_postman_id": "88ca67d0-41d6-46c9-bc8a-7d4489ff305f",
+		"name": "Apollo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Keycloak",
+			"item": [
+				{
+					"name": "RequestToken",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "apollo",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "user1",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password123",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:9000/auth/realms/apollo-web/protocol/openid-connect/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"auth",
+								"realms",
+								"apollo-web",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ValidateToken",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "access_token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJGSjg2R2NGM2pUYk5MT2NvNE52WmtVQ0lVbWZZQ3FvcXRPUWVNZmJoTmxFIn0.eyJleHAiOjE2MDc0Mzc0MTYsImlhdCI6MTYwNzQzNzExNiwianRpIjoiYTU1ZGQyYjQtZTgwZS00ZjBjLTgwZjItNDgwNjNjOTE2MGJhIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo5MDAwL2F1dGgvcmVhbG1zL2Fwb2xsby13ZWIiLCJzdWIiOiJkMjg5MjNhNy01YjlkLTRhMGItOTliNi1iOGUwMzFhMzU4ODgiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJhcG9sbG8iLCJzZXNzaW9uX3N0YXRlIjoiMTkyYWZjNjItMGQ2NS00NGJhLTliNmQtZmU0MmEyOWJmZTg1IiwiYWNyIjoiMSIsImFsbG93ZWQtb3JpZ2lucyI6WyIqIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0Il19LCJzY29wZSI6InByb2ZpbGUgZW1haWwiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInByZWZlcnJlZF91c2VybmFtZSI6InVzZXIxIiwidXVpZCI6ImM5NWUwZWE4LWNjMzMtNDRiMS1hOGZiLTNhOTViYjg1ZjUzNiJ9.QXqSbFxsOEW3QtSZoOB4uACmC4BwB8UVvD9v_-Si0cShV4xRydBzrBdK9sxOhIqe1nEt0uKMyav50lQwX5hhuOQK7F0Oa1uJpjTfEKEFZdk41lNEUUHbQlw-YeoKWCzIG0pNHzLmvaAUXrkNXWBWVCYcZJ8_6uI28udnx3BGW_M",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:9000/auth/realms/apollo-web/protocol/openid-connect/userinfo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"auth",
+								"realms",
+								"apollo-web",
+								"protocol",
+								"openid-connect",
+								"userinfo"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

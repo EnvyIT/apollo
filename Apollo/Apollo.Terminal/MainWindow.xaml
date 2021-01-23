@@ -1,0 +1,160 @@
+﻿<mde:MaterialWindow x:Class="Apollo.Terminal.MainWindow"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
+                    xmlns:view="clr-namespace:Apollo.Terminal.Views"
+                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                    xmlns:viewModels="clr-namespace:Apollo.Terminal.ViewModels"
+                    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+                    xmlns:controls="clr-namespace:Apollo.Terminal.Controls"
+                    xmlns:lex="http://wpflocalizeextension.codeplex.com"
+                    xmlns:converters="clr-namespace:Apollo.Terminal.Converters"
+                    xmlns:onScreenKeyboard="clr-namespace:Apollo.Terminal.Controls.OnScreenKeyboard"
+                    lex:LocalizeDictionary.DesignCulture="en"
+                    lex:ResxLocalizationProvider.DefaultAssembly="Apollo.Terminal"
+                    lex:ResxLocalizationProvider.DefaultDictionary="Resources"
+                    mc:Ignorable="d"
+                    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+                    TextElement.FontWeight="Regular"
+                    TextElement.FontSize="13"
+                    TextOptions.TextFormattingMode="Ideal"
+                    TextOptions.TextRenderingMode="Auto"
+                    Background="{DynamicResource MaterialDesignPaper}"
+                    FontFamily="{DynamicResource MaterialDesignFont}"
+                    Title="{lex:Loc Heading_Title}"
+                    Height="450"
+                    Width="800"
+                    d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
+                    WindowStyle="SingleBorderWindow"
+                    WindowState="Maximized"
+                    WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <BitmapImage x:Key="RocketImage" UriSource="pack://application:,,,/Assets/rocket.png" />
+
+        <DataTemplate DataType="{x:Type viewModels:OverlayViewModel}">
+            <view:OverlayView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModels:MovieListViewModel}">
+            <view:MovieListView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModels:MovieDetailViewModel}">
+            <view:MovieDetailView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModels:WizardViewModel}">
+            <view:WizardView />
+        </DataTemplate>
+
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converters:BooleanToInvertVisibilityConverter x:Key="BooleanToInvertVisibilityConverter" />
+
+    </Window.Resources>
+
+    <b:Interaction.Triggers>
+        <b:EventTrigger EventName="PreviewMouseLeftButtonDown">
+            <b:InvokeCommandAction Command="{Binding UpdateAutoResetCommand}" />
+        </b:EventTrigger>
+        <b:EventTrigger EventName="PreviewMouseRightButtonDown">
+            <b:InvokeCommandAction Command="{Binding UpdateAutoResetCommand}" />
+        </b:EventTrigger>
+        <b:EventTrigger EventName="MouseMove">
+            <b:InvokeCommandAction Command="{Binding UpdateAutoResetCommand}" />
+        </b:EventTrigger>
+        <b:EventTrigger EventName="PreviewTouchDown">
+            <b:InvokeCommandAction Command="{Binding UpdateAutoResetCommand}" />
+        </b:EventTrigger>
+        <b:EventTrigger EventName="PreviewTouchMove">
+            <b:InvokeCommandAction Command="{Binding UpdateAutoResetCommand}" />
+        </b:EventTrigger>
+        <b:EventTrigger EventName="PreviewKeyDown">
+            <b:InvokeCommandAction Command="{Binding UpdateAutoResetCommand}" />
+        </b:EventTrigger>
+    </b:Interaction.Triggers>
+
+    <materialDesign:DialogHost Identifier="RootDialog"
+                               DialogTheme="Inherit"
+                               SnackbarMessageQueue="{Binding MessageQueue}">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="10*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <materialDesign:ColorZone Grid.Row="0"
+                                      Padding="16 20"
+                                      materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                                      Mode="PrimaryMid"
+                                      Visibility="{Binding HeaderVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <DockPanel LastChildFill="False">
+                    <StackPanel DockPanel.Dock="Left"
+                                Orientation="Horizontal">
+                        <Image Source="{StaticResource RocketImage}"
+                               Height="45"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               Stretch="Uniform" 
+                               Margin="16 0 20 0"/>
+                        <TextBlock HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="28"
+                                   Foreground="{DynamicResource MaterialDesignBody}"
+                                   Text="{lex:Loc Heading_Title}" />
+                    </StackPanel>
+                    <controls:TranslationControl DockPanel.Dock="Right" />
+                </DockPanel>
+            </materialDesign:ColorZone>
+
+            <Grid Grid.Row="1">
+                <ProgressBar
+                    Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Style="{StaticResource MaterialDesignCircularProgressBar}"
+                    Width="150"
+                    Height="150"
+                    IsIndeterminate="True" />
+
+                <Grid Visibility="{Binding IsLoading, Converter={StaticResource BooleanToInvertVisibilityConverter}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <ContentControl Grid.Row="0"
+                                    Content="{Binding CurrentPageViewModel}" />
+                </Grid>
+                <materialDesign:Snackbar
+                    Background="{DynamicResource SecondaryHueMidBrush}"
+                    FontFamily="{DynamicResource MaterialDesignFont}"
+                    MessageQueue="{Binding MessageQueue}" />
+            </Grid>
+
+            <materialDesign:Card Grid.Row="2"
+                                 Height="280"
+                                 Visibility="{Binding IsOnScreenKeyBoardVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                 Background="{DynamicResource MaterialDesignPaper}"
+                                 Effect="{StaticResource MaterialDesignShadowDepth1}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Viewbox Grid.Column="1" Margin="0 10 0 0 ">
+                        <onScreenKeyboard:OnScreenKeyboardControl
+                            KeyChangedCommand="{Binding KeyboardKeyChangedCommand}"
+                            TabulatorCommand="{Binding KeyboardTabulator}"
+                            DeleteCommand="{Binding KeyboardDeleteCommand}"
+                            SpaceCommand="{Binding KeyboardSpaceCommand}" />
+                    </Viewbox>
+                </Grid>
+            </materialDesign:Card>
+
+        </Grid>
+    </materialDesign:DialogHost>
+</mde:MaterialWindow>

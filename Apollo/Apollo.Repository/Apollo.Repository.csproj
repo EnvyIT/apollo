@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <Configurations>Debug;Release;Github</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Apollo.Persistence.Exception\Apollo.Persistence.Exception.csproj" />
+    <ProjectReference Include="..\Apollo.Persistence\Apollo.Persistence.csproj" />
+    <ProjectReference Include="..\Apollo.Util\Apollo.Util.csproj" />
+  </ItemGroup>
+
+</Project>

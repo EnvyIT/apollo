@@ -1,0 +1,44 @@
+title Schedule Management
+
+
+participant Client
+participant Apollo API
+participant Apollo Persistence
+
+participant Apollo Keycloak
+
+Client->>Apollo API: GET /api/v1/schedule/day/2020-12-06
+
+Apollo API->>Apollo Persistence: Fetch all schedules
+Apollo API<<--Apollo Persistence: List of schedules
+
+Client<<--Apollo API: HTTP/1.1 OK - List of Schedules
+
+
+Client->>Apollo Keycloak: POST /auth/realms/apollo-web/protocol/openid-connect/token
+
+Client<<--Apollo Keycloak: Claims
+
+
+Client->>Apollo API: POST /api/v1/schedule
+
+Apollo API->>Apollo Persistence: Add new schedule
+Apollo API<<--Apollo Persistence: new Schedule()
+
+Client<<--Apollo API: HTTP/1.1 CREATED - /api/v1/schedule/{id}
+
+
+Client->>Apollo API: PUT /api/v1/schedule
+
+Apollo API->>Apollo Persistence: Update schedule
+Apollo API<<--Apollo Persistence: Updated successfully
+
+Client<<--Apollo API: HTTP/1.1 NO_CONTENT
+
+
+Client->>Apollo API: DELETE /api/v1/schedule
+
+Apollo API->>Apollo Persistence: Delete schedule
+Apollo API<<--Apollo Persistence: Deleted successfully
+
+Client<<--Apollo API: HTTP/1.1 NO_CONTENT

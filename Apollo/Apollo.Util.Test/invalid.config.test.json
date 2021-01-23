@@ -1,0 +1,4 @@
+{
+  "JWT_ENDPOINT": "http://localhost:9001/invalid",
+  "JWT_CLIENT": "invalid"
+}

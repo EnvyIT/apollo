@@ -1,0 +1,8 @@
+{
+  "TEST_KEY": "AMG123-ON8bR-AGSF#16-12345",
+  "JWT_ISSUER": "apollo test",
+  "JWT_AUDIENCE": "apollo test",
+  "JWT_SECURITY_KEY": "qwertyuiopasdfghjklzxcvbnm123456",
+  "JWT_ENDPOINT": "http://localhost:9001/auth/realms/apollo-test",
+  "JWT_CLIENT": "apollo"
+}

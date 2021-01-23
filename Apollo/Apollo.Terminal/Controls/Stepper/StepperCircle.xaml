@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="Apollo.Terminal.Controls.Stepper.StepperCircle"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Apollo.Terminal.Controls.Stepper"
+             xmlns:stepperConverter="clr-namespace:Apollo.Terminal.Converters.Stepper"
+             xmlns:stepperType="clr-namespace:Apollo.Terminal.Types.Stepper"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance local:StepperCircle}"
+             d:DesignHeight="100" d:DesignWidth="100">
+
+    <StackPanel x:Name="LayoutRoot"
+                Orientation="Horizontal"
+                Margin="0">
+        <Border CornerRadius="35"
+                Width="35"
+                Height="35">
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding State}" Value="{x:Static stepperType:StepState.Open}">
+                            <Setter Property="Background" Value="{DynamicResource PrimaryHueDarkBrush}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding State}" Value="{x:Static stepperType:StepState.Active}">
+                            <Setter Property="Background" Value="{DynamicResource SecondaryHueMidBrush}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding State}" Value="{x:Static stepperType:StepState.Done}">
+                            <Setter Property="Background" Value="{DynamicResource PrimaryHueLightBrush}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <TextBlock Text="{Binding Index}"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontSize="16"
+                       FontWeight="DemiBold">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding State}" Value="{x:Static stepperType:StepState.Open}">
+                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBodyLight}" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding State}" Value="{x:Static stepperType:StepState.Active}">
+                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesignLightForeground}" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding State}" Value="{x:Static stepperType:StepState.Done}">
+                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Border>
+        <TextBlock Text="{Binding Title}"
+                   Margin="10 0 0 0"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontSize="14">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding State}" Value="{x:Static stepperType:StepState.Open}">
+                            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBodyLight}" />
+                            <Setter Property="FontWeight" Value="Normal" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding State}" Value="{x:Static stepperType:StepState.Active}">
+                            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+                            <Setter Property="FontWeight" Value="DemiBold" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding State}" Value="{x:Static stepperType:StepState.Done}">
+                            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+                            <Setter Property="FontWeight" Value="Normal" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+    </StackPanel>
+</UserControl>

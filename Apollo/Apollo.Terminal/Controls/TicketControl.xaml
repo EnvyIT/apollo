@@ -1,0 +1,95 @@
+﻿<UserControl x:Class="Apollo.Terminal.Controls.TicketControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Apollo.Terminal.Controls"
+             xmlns:converters="clr-namespace:Apollo.Terminal.Converters"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             mc:Ignorable="d" Background="White"
+             d:DataContext="{local:TicketControl}"
+             Width="1000" Height="400">
+    <UserControl.Resources>
+        <converters:ByteListToBitmapConverter x:Key="ByteListToBitmapConverter" />
+        <converters:CurrencyToStringConverter x:Key="CurrencyToStringConverter" />
+        <BitmapImage x:Key="DefaultImage" UriSource="pack://application:,,,/Assets/defaultImage.png" />
+        <BitmapImage x:Key="RocketImage" UriSource="pack://application:,,,/Assets/rocket.png" />
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot" Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+
+        <Image Grid.Column="0"
+               Source="{Binding MovieImage, Converter={StaticResource ByteListToBitmapConverter}                ,
+                FallbackValue={StaticResource DefaultImage},
+                                TargetNullValue={StaticResource DefaultImage}}"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"
+               Stretch="UniformToFill" />
+
+        <Grid Grid.Column="2" Margin="0 10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="230" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0"
+                        Grid.Column="0"
+                        Orientation="Horizontal">
+                <Image Source="{StaticResource RocketImage}"
+                       Height="35"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Stretch="Uniform"
+                       Margin="0 0 16 0" />
+                <TextBlock
+                    Text="{lex:Loc General_ProductName}"
+                    FontSize="30"
+                    Foreground="{DynamicResource MaterialDesignLightForeground}" />
+            </StackPanel>
+
+            <TextBlock Grid.Row="2"
+                       Grid.Column="0"
+                       Text="{Binding MovieTitle}"
+                       FontSize="24"
+                       Foreground="{DynamicResource MaterialDesignLightForeground}" />
+
+            <Image Grid.Row="0"
+                   Grid.Column="1"
+                   Grid.RowSpan="4"
+                   Source="{Binding QrCodeImage, Converter={StaticResource ByteListToBitmapConverter}}"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Right"
+                   Stretch="Uniform" />
+
+            <TextBlock Grid.Row="4"
+                       Grid.Column="0"
+                       FontSize="20"
+                       Text="{Binding SeatsText}"
+                       Foreground="{DynamicResource MaterialDesignLightForeground}" />
+
+            <StackPanel Grid.Row="4"
+                        Grid.Column="1"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right">
+                <TextBlock Text="{Binding Price, Converter={StaticResource CurrencyToStringConverter}}"
+                           FontSize="20"
+                           FontWeight="DemiBold"
+                           Foreground="{DynamicResource MaterialDesignLightForeground}" />
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</UserControl>

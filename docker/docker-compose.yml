@@ -1,0 +1,87 @@
+version: '3.8'
+
+services:
+
+  apollo_dev_db:
+    build: ./Database/
+    image: apollo-db:latest
+    container_name: apollo.dev.db
+    restart: always
+    environment:
+       MYSQL_ROOT_PASSWORD: ${DEV_ROOT_PASSWORD}
+       MYSQL_DATABASE: ${DEV_DATABASE}
+       MYSQL_USER: ${DEV_USER}
+       MYSQL_PASSWORD: ${DEV_PASSWORD}
+    volumes:
+      - ${PWD}/mariadb/dev:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - apollo_net
+
+  apollo_test_db:
+    image: apollo-db:latest
+    container_name: apollo.test.db
+    restart: always
+    environment:
+        MYSQL_ROOT_PASSWORD: ${TEST_ROOT_PASSWORD}
+        MYSQL_DATABASE: ${TEST_DATABASE}
+        MYSQL_USER: ${TEST_USER}
+        MYSQL_PASSWORD: ${TEST_PASSWORD}
+    volumes:
+      - ${PWD}/mariadb/test:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    networks:
+      - apollo_net
+
+  apollo_authentication_prod:
+    build: ./Authentication/prod
+    image: apollo-authentication-prod:latest
+    container_name: apollo.authentication.prod
+    restart: always
+    environment:
+      KEYCLOAK_USER: ${KEYCLOAK_USER}
+      KEYCLOAK_PASSWORD: ${KEYCLOAK_PASSWORD}
+      MYSQL_USER: ${DEV_USER}
+      KEYCLOAK_IMPORT: ${KEYCLOAK_IMPORT}
+    ports:
+      - "9000:8080"
+    networks:
+      - apollo_net
+
+  apollo_authentication_dev:
+    build: ./Authentication/dev
+    image: apollo-authentication-dev:latest
+    container_name: apollo.authentication.dev
+    restart: always
+    environment:
+      KEYCLOAK_USER: ${KEYCLOAK_USER_DEV}
+      KEYCLOAK_PASSWORD: ${KEYCLOAK_PASSWORD_DEV}
+      MYSQL_USER: ${TEST_USER}
+      KEYCLOAK_IMPORT: ${KEYCLOAK_IMPORT_DEV}
+    ports:
+      - "9001:8080"
+    networks:
+      - apollo_net
+
+  apollo_api:
+    build:
+      context: ../Apollo/
+      dockerfile: ./Apollo.Api/Dockerfile
+    image: apollo-api:latest
+    container_name: apollo.api
+    restart: always
+    environment:
+      ASPNETCORE_URLS: http://+:80
+      ASPNETCORE_ENVIRONMENT: Production
+    ports:
+      - "8080:80"
+    depends_on:
+      - apollo_dev_db
+    networks:
+      - apollo_net
+
+networks:
+  apollo_net:
+    driver: "bridge"

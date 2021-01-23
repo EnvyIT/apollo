@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+
+    <Configurations>Debug;Release;Github</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="coverlet.collector" Version="1.3.0">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+	  <PackageReference Include="coverlet.msbuild" Version="2.9.0">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+	  <PackageReference Include="FluentAssertions" Version="5.10.3" />
+	  <PackageReference Include="Moq" Version="4.15.2" />
+	  <PackageReference Include="NUnit" Version="3.12.0" />
+	  <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
+	  <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Apollo.Core.Dto\Apollo.Core.Dto.csproj" />
+    <ProjectReference Include="..\Apollo.Domain\Apollo.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <Configurations>Debug;Release;Github</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Apollo.Core.Dto\Apollo.Core.Dto.csproj" />
+    <ProjectReference Include="..\Apollo.Core.Exception\Apollo.Core.Exception.csproj" />
+    <ProjectReference Include="..\Apollo.Core.External\Apollo.Core.External.csproj" />
+    <ProjectReference Include="..\Apollo.Core.Validation\Apollo.Core.Validation.csproj" />
+    <ProjectReference Include="..\Apollo.Domain\Apollo.Domain.csproj" />
+    <ProjectReference Include="..\Apollo.Payment.Adapter\Apollo.Payment.Adapter.csproj" />
+    <ProjectReference Include="..\Apollo.Payment\Apollo.Payment.csproj" />
+    <ProjectReference Include="..\Apollo.UnitOfWork\Apollo.UnitOfWork.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.core.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

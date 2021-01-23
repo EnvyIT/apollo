@@ -1,0 +1,149 @@
+﻿<UserControl x:Class="Apollo.Terminal.Controls.OnScreenKeyboard.OnScreenKeyboardControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:onScreenKeyboard="clr-namespace:Apollo.Terminal.Controls.OnScreenKeyboard"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="onScreenKeyboard:OnScreenKeyControl">
+            <Setter Property="Margin" Value="2" />
+        </Style>
+        <Style TargetType="onScreenKeyboard:OnScreenIconKeyControl">
+            <Setter Property="Margin" Value="2" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="20" />
+        </Grid.ColumnDefinitions>
+
+        <!-- First row -->
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Key="^" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3" Key="1" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="3" Key="2" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="0" Grid.Column="9" Grid.ColumnSpan="3" Key="3" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="0" Grid.Column="12" Grid.ColumnSpan="3" Key="4" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="0" Grid.Column="15" Grid.ColumnSpan="3" Key="5" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="0" Grid.Column="18" Grid.ColumnSpan="3" Key="6" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="0" Grid.Column="21" Grid.ColumnSpan="3" Key="7" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="0" Grid.Column="24" Grid.ColumnSpan="3" Key="8" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="0" Grid.Column="27" Grid.ColumnSpan="3" Key="9" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="0" Grid.Column="30" Grid.ColumnSpan="3" Key="0" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="0" Grid.Column="33" Grid.ColumnSpan="3" Key="?" />
+
+        <!-- Second row -->
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="3" Key="q" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="3" Key="w" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="1" Grid.Column="10" Grid.ColumnSpan="3" Key="e" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="1" Grid.Column="13" Grid.ColumnSpan="3" Key="r" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="1" Grid.Column="16" Grid.ColumnSpan="3" Key="t" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="1" Grid.Column="19" Grid.ColumnSpan="3" Key="z" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="1" Grid.Column="22" Grid.ColumnSpan="3" Key="u" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="1" Grid.Column="25" Grid.ColumnSpan="3" Key="i" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="1" Grid.Column="28" Grid.ColumnSpan="3" Key="o" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="1" Grid.Column="31" Grid.ColumnSpan="3" Key="p" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="1" Grid.Column="34" Grid.ColumnSpan="3" Key="ü" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="1" Grid.Column="37" Grid.ColumnSpan="3" Key="*" />
+
+        <!-- Third row -->
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="3" Key="a" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="2" Grid.Column="8" Grid.ColumnSpan="3" Key="s" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="2" Grid.Column="11" Grid.ColumnSpan="3" Key="d" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="2" Grid.Column="14" Grid.ColumnSpan="3" Key="f" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="2" Grid.Column="17" Grid.ColumnSpan="3" Key="g" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="2" Grid.Column="20" Grid.ColumnSpan="3" Key="h" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="2" Grid.Column="23" Grid.ColumnSpan="3" Key="j" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="2" Grid.Column="26" Grid.ColumnSpan="3" Key="k" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="2" Grid.Column="29" Grid.ColumnSpan="3" Key="l" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="2" Grid.Column="32" Grid.ColumnSpan="3" Key="ö" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="2" Grid.Column="35" Grid.ColumnSpan="3" Key="ä" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="2" Grid.Column="38" Grid.ColumnSpan="3" Key="#" />
+
+        <!-- Fourth row -->
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="3" Key="&lt;" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="3" Grid.Column="7" Grid.ColumnSpan="3" Key="y" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="3" Grid.Column="10" Grid.ColumnSpan="3" Key="x" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="3" Grid.Column="13" Grid.ColumnSpan="3" Key="c" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="3" Grid.Column="16" Grid.ColumnSpan="3" Key="v" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="3" Grid.Column="19" Grid.ColumnSpan="3" Key="b" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="3" Grid.Column="22" Grid.ColumnSpan="3" Key="n" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="3" Grid.Column="25" Grid.ColumnSpan="3" Key="m" />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="3" Grid.Column="28" Grid.ColumnSpan="3" Key="," />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="3" Grid.Column="31" Grid.ColumnSpan="3" Key="." />
+        <onScreenKeyboard:OnScreenKeyControl Grid.Row="3" Grid.Column="34" Grid.ColumnSpan="3" Key="-" />
+
+        <!-- Special Keys Left -->
+        <onScreenKeyboard:OnScreenIconKeyControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"
+                                                 KeyIcon="KeyboardTab"
+                                                 KeyCommand="{Binding TabulatorCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=onScreenKeyboard:OnScreenKeyboardControl}}" />
+        <onScreenKeyboard:OnScreenIconKeyControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5"
+                                                 KeyIcon="KeyboardCapslock"
+                                                 KeyCommand="{Binding CapsLockCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=onScreenKeyboard:OnScreenKeyboardControl}}" />
+        <onScreenKeyboard:OnScreenIconKeyControl Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4"
+                                                 KeyIcon="KeyboardCaps"
+                                                 KeyCommand="{Binding CapsCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=onScreenKeyboard:OnScreenKeyboardControl}}" />
+
+        <!-- Special Keys Right -->
+        <onScreenKeyboard:OnScreenIconKeyControl Grid.Row="0" Grid.Column="36" Grid.ColumnSpan="8"
+                                                 KeyIcon="KeyboardBackspace"
+                                                 KeyCommand="{Binding DeleteCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=onScreenKeyboard:OnScreenKeyboardControl}}" />
+        <onScreenKeyboard:OnScreenIconKeyControl Grid.Row="1" Grid.RowSpan="2" Grid.Column="41" Grid.ColumnSpan="3"
+                                                 KeyIcon="KeyboardReturn"
+                                                 KeyCommand="{Binding EnterCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=onScreenKeyboard:OnScreenKeyboardControl}}" />
+        <onScreenKeyboard:OnScreenIconKeyControl Grid.Row="3" Grid.Column="37" Grid.ColumnSpan="7"
+                                                 KeyIcon="KeyboardSpace"
+                                                 KeyCommand="{Binding SpaceCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=onScreenKeyboard:OnScreenKeyboardControl}}" />
+    </Grid>
+</UserControl>

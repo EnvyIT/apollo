@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="Apollo.Terminal.Controls.OnScreenKeyboard.OnScreenKeyControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Apollo.Terminal.Controls.OnScreenKeyboard"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:onScreenKeyboard="clr-namespace:Apollo.Terminal.Converters.OnScreenKeyboard"
+             mc:Ignorable="d" d:DesignWidth="150" d:DesignHeight="50">
+    <UserControl.Resources>
+        <onScreenKeyboard:StringToKeySymbol x:Key="StringToKeySymbol" />
+    </UserControl.Resources>
+
+    <Border Background="{DynamicResource PrimaryHueDarkBrush}"
+            Padding="15"
+            Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+            MinWidth="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+            MaxWidth="{Binding ActualHeight, RelativeSource={RelativeSource Self}}">
+        <b:Interaction.Triggers>
+            <b:EventTrigger EventName="MouseLeftButtonDown">
+                <b:InvokeCommandAction
+                    Command="{Binding InternalKeyChangedCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=local:OnScreenKeyboardControl}}"
+                    CommandParameter="{Binding Key, RelativeSource={RelativeSource FindAncestor, AncestorType=local:OnScreenKeyControl}}" />
+            </b:EventTrigger>
+            <b:EventTrigger EventName="TouchDown">
+                <b:InvokeCommandAction
+                    Command="{Binding InternalKeyChangedCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=local:OnScreenKeyboardControl}}"
+                    CommandParameter="{Binding Key, RelativeSource={RelativeSource FindAncestor, AncestorType=local:OnScreenKeyControl}}" />
+            </b:EventTrigger>
+        </b:Interaction.Triggers>
+        <Viewbox VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Foreground="{DynamicResource MaterialDesignDarkForeground}">
+                <TextBlock.Text>
+                    <MultiBinding Converter="{StaticResourceExtension StringToKeySymbol}">
+                        <Binding Path="Key"
+                                 RelativeSource="{RelativeSource FindAncestor, AncestorType=local:OnScreenKeyControl}" />
+                        <Binding Path="IsCapsActive"
+                                 RelativeSource="{RelativeSource FindAncestor, AncestorType=local:OnScreenKeyboardControl}" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+        </Viewbox>
+    </Border>
+</UserControl>

@@ -1,0 +1,94 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Configurations>Debug;Release;Github</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\background.png" />
+    <None Remove="Assets\defaultImage.png" />
+    <None Remove="Assets\rocket.png" />
+    <None Remove="Assets\seatFree.png" />
+    <None Remove="Assets\seatLocked.png" />
+    <None Remove="Assets\seatOccupied.png" />
+    <None Remove="Assets\seatSelected.png" />
+    <None Remove="Types\ValidResultTransferObject" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Types\TransferObject\ValidResultTransferObject.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LibVLCSharp.WPF" Version="3.4.9" />
+    <PackageReference Include="MaterialDesignExtensions" Version="3.2.0" />
+    <PackageReference Include="MaterialDesignThemes" Version="3.2.0" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
+    <PackageReference Include="RestSharp" Version="106.11.7" />
+    <PackageReference Include="System.Reactive" Version="5.0.0" />
+    <PackageReference Include="System.Reactive.Core" Version="5.0.0" />
+    <PackageReference Include="System.Reactive.Interfaces" Version="5.0.0" />
+    <PackageReference Include="System.Reactive.Linq" Version="5.0.0" />
+    <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.11" />
+    <PackageReference Include="WPFLocalizeExtension" Version="3.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Apollo.Core.Dto\Apollo.Core.Dto.csproj" />
+    <ProjectReference Include="..\Apollo.Core\Apollo.Core.csproj" />
+    <ProjectReference Include="..\Apollo.Util\Apollo.Util.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\defaultImage.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\rocket.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\seatFree.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\seatLocked.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\seatOccupied.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\seatSelected.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Controls\OnScreenKeyboard\OnScreenKeyControl - Copy.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>OnScreenKeyControl.xaml.cs</DependentUpon>
+    </Compile>
+    <Compile Update="I18N\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="I18N\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.terminal.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

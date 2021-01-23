@@ -1,0 +1,82 @@
+name: Apollo
+
+on:
+  push:
+    branches:
+      - master
+      - development
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      TEST_ROOT_PASSWORD: ${{ secrets.TEST_ROOT_PASSWORD }}
+      TEST_DATABASE: ${{ secrets.TEST_DATABASE }}
+      TEST_USER: ${{ secrets.TEST_USER }}
+      TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
+
+      DEV_ROOT_PASSWORD: ${{ secrets.DEV_ROOT_PASSWORD }}
+      DEV_DATABASE: ${{ secrets.DEV_DATABASE }}
+      DEV_USER: ${{ secrets.DEV_USER }}
+      DEV_PASSWORD: ${{ secrets.DEV_PASSWORD }}
+      
+      SQL_SERVER_PASSWORD: ${{ secrets.SQL_SERVER_PASSWORD }}
+
+      KEYCLOAK_USER_DEV: ${{ secrets.KEYCLOAK_USER_DEV }}
+      KEYCLOAK_PASSWORD_DEV: ${{ secrets.KEYCLOAK_PASSWORD_DEV }}
+      KEYCLOAK_IMPORT_DEV: ${{ secrets.KEYCLOAK_IMPORT_DEV }}
+
+      PWD: ${{ secrets.PWD }}
+
+    steps:
+    - uses: actions/checkout@v2
+    # Setup docker containers for testing
+    - name: Setup containerized databases
+      run:  docker-compose -f docker/Test/docker-compose.yml --env-file ../.env up -d 
+    - name: Verify running containers
+      run:  docker ps -a 
+    # Setup dotnet core 5.0 and install packages
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1.7.2
+      with:
+        dotnet-version: '5.0.100'
+    - name: Install dependencies
+      run: dotnet restore /property:Configuration=CI ./Apollo/Apollo.sln
+    - name: Build
+      run: dotnet build --configuration CI --no-restore ./Apollo/Apollo.sln
+        
+    # Run tests with coverage
+    - name: Test
+      run: dotnet test /property:Configuration=CI ./Apollo/Apollo.sln /p:CollectCoverage=true  /p:CoverletOutput=../../ /p:MergeWith="../../coverage.json" /p:CoverletOutputFormat=\"cobertura,json\" -m:1
+   
+    # Upload coverage report
+    - name: Upload Coverage Result
+      uses: actions/upload-artifact@v2
+      with: 
+         name: code-coverage-report
+         path: ./coverage.cobertura.xml
+         retention-days: 3
+
+    # Set total covered lines
+    # Extracting the line-rate which is a floating point number
+    # Multiply it with 100 to get the coverage percentage
+    # Expose the TOTAL_COVERED env to Github environment
+    - name: Expose total covered
+      run: echo "TOTAL_COVERED=$(grep -P 'coverage' coverage.cobertura.xml | grep -Po 'line-rate="\d..\d*"' | grep -Po '\d..\d*' | awk '{ SUM=$1 * 100 } END { print SUM }' )" >> $GITHUB_ENV
+    
+    # Create the badge via shields.io and private gist
+    - name: Create coverage badge
+      uses: schneegans/dynamic-badges-action@v1.0.0
+      with:
+        auth: ${{ secrets.GIST_SECRET }}
+        gistID: ${{ secrets.GIST_ID }}
+        filename: apollo-coverage.json
+        label: Code-Coverage
+        labelColor: '#333333'
+        namedLogo: Codecov
+        logoColor: '#fff'
+        message: ${{ env.TOTAL_COVERED }}%
+        color: '#7764FA'
+        isError: ${{ env.TOTAL_COVERED < 95.0 }}
+        style: flat
+        cacheSeconds: 0#

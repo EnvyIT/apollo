@@ -1,0 +1,168 @@
+{
+  "realm": "apollo-test",
+  "enabled": true,
+  "sslRequired": "none",
+  "registrationAllowed": true,
+  "requiredCredentials": [
+    "password"
+  ],
+  "users": [
+    {
+      "username": "test1",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password123"
+        }
+      ],
+      "realmRoles": [
+        "default"
+      ],
+      "attributes" : {
+        "uuid" : "c95e0ea8-cc33-44b1-a8fb-3a95bb85f536"
+      }
+    },
+	{
+      "username": "admin",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "admin123"
+        }
+      ],
+      "realmRoles": [
+        "default"
+      ],
+      "attributes" : {
+        "uuid" : "3941a6ae-cc82-4b60-8f95-9805db11e393"
+      }
+    },
+    {
+      "username": "user1",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password123"
+        }
+      ],
+      "realmRoles": [
+        "default"
+      ],
+      "attributes" : {
+        "uuid" : "c95e0ea8-cc33-44b1-a8fb-3a95bb85f536"
+      }
+    },
+    {
+      "username": "user2",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password123"
+        }
+      ],
+      "realmRoles": [
+        "default"
+      ],
+      "attributes" : {
+        "uuid" : "cd692bf7-dbb4-4d52-918c-181536d6caf8"
+      }
+    },
+    {
+      "username": "user3",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password123"
+        }
+      ],
+      "realmRoles": [
+        "default"
+      ],
+      "attributes" : {
+        "uuid" : "561ec65a-5e0b-46b4-af01-e3c42acfe686"
+      }
+    },
+    {
+      "username": "terminal",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password123"
+        }
+      ],
+      "realmRoles": [
+        "default"
+      ],
+      "attributes" : {
+        "uuid" : "7398a331-f9d3-482b-9f88-9abb39e8bd44"
+      }
+    }
+  ],
+  "roles": {
+    "realm": [
+      {
+        "name": "default",
+        "description": "No special privileges"
+      }
+    ]
+  },
+  "scopeMappings": [
+    {
+      "client": "apollo",
+      "roles": [
+        "default"
+      ]
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "apollo",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": true,
+      "directAccessGrantsEnabled": true,
+      "rootUrl": "${authBaseUrl}",
+      "baseUrl": "/realms/apollo-test/protocol/openid-connect/auth?client_id=apollo&response_type=code&scope=openid&redirect_uri=/",
+      "redirectUris": [
+        "*"
+      ],
+      "webOrigins": [
+        "*"
+      ],
+      "protocolMappers": [
+        {
+          "name": "attribute-mapper-uuid",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-attribute-mapper",
+          "consentRequired": false,
+          "config": {
+            "userinfo.token.claim": "true",
+            "user.attribute": "uuid",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "uuid",
+            "jsonType.label": "String"
+          }
+        },
+        {
+          "name": "apollo-audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.client.audience": "apollo",
+            "id.token.claim": "false",
+            "access.token.claim": "true"
+          }
+        }
+      ]
+    }
+  ]
+}
